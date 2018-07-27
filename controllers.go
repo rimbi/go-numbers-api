@@ -14,7 +14,7 @@ func writeNumbers(w http.ResponseWriter, numbers []int) {
 }
 
 // numbersHandler handles GET Requests
-func numbersHandler(numbers []int, collectIntegers func(string, chan []int)) func(http.ResponseWriter, *http.Request) {
+func numbersHandler(collectIntegers func(string, chan []int)) func(http.ResponseWriter, *http.Request) {
 	return func(w http.ResponseWriter, r *http.Request) {
 
 		urls, ok := r.URL.Query()["u"]

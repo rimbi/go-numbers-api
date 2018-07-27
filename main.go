@@ -33,7 +33,7 @@ func collectIntegers(url string, ch chan []int) {
 
 // Prepares http server and starts its event loop
 func runEventLoop(addr string) {
-	http.HandleFunc("/numbers", numbersHandler([]int{2, 3, 5, 7, 11, 13}, collectIntegers))
+	http.HandleFunc("/numbers", numbersHandler(collectIntegers))
 	http.ListenAndServe(addr, nil)
 }
 
