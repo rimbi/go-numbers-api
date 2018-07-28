@@ -40,7 +40,7 @@ func TestNumbersHandlerParsesUrlsProperly(t *testing.T) {
 	// given
 	w := new(FakeResponseWriter)
 	var urls = [2]string{"http://localhost/fibo", "http://localhost/primes"}
-	fakeCollectIntegers := func(u string, ch chan []int) {
+	fakecollectNumbers := func(u string, ch chan []int) {
 		for i := 0; i < len(urls); i++ {
 			if u == urls[i] {
 				urls[i] = ""
@@ -48,7 +48,7 @@ func TestNumbersHandlerParsesUrlsProperly(t *testing.T) {
 		}
 		ch <- []int{}
 	}
-	controller := numbersHandler(fakeCollectIntegers)
+	controller := numbersHandler(fakecollectNumbers)
 	request := new(http.Request)
 	request.URL, _ = url.Parse(fmt.Sprintf("http://localhost/?u=%s&u=%s", urls[0], urls[1]))
 	// when
@@ -65,11 +65,11 @@ func TestNumbersHandlerDoesNotMakeServiceCallWhenThereIsNoUrlPassed(t *testing.T
 	// given
 	w := new(FakeResponseWriter)
 	called := false
-	fakeCollectIntegers := func(u string, ch chan []int) {
+	fakecollectNumbers := func(u string, ch chan []int) {
 		called = true
 		ch <- []int{}
 	}
-	controller := numbersHandler(fakeCollectIntegers)
+	controller := numbersHandler(fakecollectNumbers)
 	request := new(http.Request)
 	request.URL, _ = url.Parse(fmt.Sprintf("http://localhost/"))
 	// when
@@ -83,10 +83,10 @@ func TestNumbersHandlerDoesNotMakeServiceCallWhenThereIsNoUrlPassed(t *testing.T
 func TestNumbersHandlerReturnsEmptyListOfNumbersWhenThereIsNoUrlPassed(t *testing.T) {
 	// given
 	w := new(FakeResponseWriter)
-	fakeCollectIntegers := func(u string, ch chan []int) {
+	fakecollectNumbers := func(u string, ch chan []int) {
 		ch <- []int{}
 	}
-	controller := numbersHandler(fakeCollectIntegers)
+	controller := numbersHandler(fakecollectNumbers)
 	request := new(http.Request)
 	request.URL, _ = url.Parse(fmt.Sprintf("http://localhost/"))
 	// when

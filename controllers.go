@@ -14,7 +14,7 @@ func writeNumbers(w http.ResponseWriter, numbers []int) {
 }
 
 // numbersHandler handles GET Requests
-func numbersHandler(collectIntegers func(string, chan []int)) func(http.ResponseWriter, *http.Request) {
+func numbersHandler(collectNumbers func(string, chan []int)) func(http.ResponseWriter, *http.Request) {
 	return func(w http.ResponseWriter, r *http.Request) {
 
 		urls, ok := r.URL.Query()["u"]
@@ -27,7 +27,7 @@ func numbersHandler(collectIntegers func(string, chan []int)) func(http.Response
 		channels := make([]chan []int, len(urls))
 		for i, url := range urls {
 			ch := make(chan []int)
-			go collectIntegers(url, ch)
+			go collectNumbers(url, ch)
 			channels[i] = ch
 		}
 		var set = NewIntSet()
