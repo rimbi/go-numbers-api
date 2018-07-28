@@ -22,6 +22,7 @@ func numbersHandler(collectIntegers func(string, chan []int)) func(http.Response
 		if !ok || len(urls[0]) < 1 {
 			log.Println("Url Param 'key' is missing")
 			writeNumbers(w, []int{})
+			return
 		}
 		channels := make([]chan []int, len(urls))
 		for i, url := range urls {
