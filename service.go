@@ -7,8 +7,8 @@ import (
 	"net/http"
 )
 
-// collectNumbers gets list of ints from a service located at <url>
-// and returns them via channel <ch>
+// collectNumbers gets list of numbers from a service located at <url>
+// and returns them via channel <ch>. In case error it returns empty list
 func collectNumbers(url string, ch chan []int) {
 	log.Println(url)
 	resp, err := http.Get(url)
