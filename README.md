@@ -1,8 +1,7 @@
-# go-ta-challenge
-This is my humble solution to travelaudience's go-challenge.
+# go-numbers-api
+This is a sample web api service which given a number of other services which return a list of numbers collects numbers from the services , merge, sort and present them as json.
 
 ## Build & Run Instructions
-* Go get the original [go-challenge](https://github.com/travelaudience/go-challenge/)
 * Run testserver `go run testserver.go`
 * Clone this repo
 * Run it `go run main.go intset.go controllers.go service.go`
