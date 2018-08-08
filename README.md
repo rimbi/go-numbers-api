@@ -1,5 +1,5 @@
 # go-numbers-api
-This is a sample web api service which given a number of other services which return a list of numbers collects numbers from the services , merge, sort and present them as json.
+This is a sample web api service which, given a number of other services which return a list of numbers, collects numbers from the services , merge, sort and present them as json.
 
 ## Build & Run Instructions
 * Clone this repo
